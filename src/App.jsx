@@ -5,7 +5,7 @@ import "./App.css";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ??
-  "https://student-crud-backend-7nbbk5tyg-sasis-projects-45f4814e.vercel.app";
+  "https://student-crud-backend-fb9o1q1t4-sasis-projects-45f4814e.vercel.app";
 const STUDENTS_ENDPOINT = `${API_BASE_URL.replace(/\/$/, "")}/students`;
 
 function App() {
