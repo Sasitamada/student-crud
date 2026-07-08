@@ -3,7 +3,10 @@ import StudentForm from "./components/StudentForm";
 import StudentList from "./components/StudentList";
 import "./App.css";
 
-const API_URL = "http://127.0.0.1:8001/students";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ??
+  "https://student-crud-backend-7nbbk5tyg-sasis-projects-45f4814e.vercel.app";
+const STUDENTS_ENDPOINT = `${API_BASE_URL.replace(/\/$/, "")}/students`;
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -17,7 +20,7 @@ function App() {
         setIsLoading(true);
         setError("");
 
-        const response = await fetch(API_URL, {
+        const response = await fetch(STUDENTS_ENDPOINT, {
           headers: {
             accept: "application/json",
           },
@@ -40,7 +43,7 @@ function App() {
   }, []);
 
   const addStudent = async (student) => {
-    const response = await fetch(API_URL, {
+    const response = await fetch(STUDENTS_ENDPOINT, {
       method: "POST",
       headers: {
         accept: "application/json",
@@ -58,7 +61,7 @@ function App() {
   };
 
   const deleteStudent = async (id) => {
-    const response = await fetch(`${API_URL}/${id}`, {
+    const response = await fetch(`${STUDENTS_ENDPOINT}/${id}`, {
       method: "DELETE",
       headers: {
         accept: "application/json",
@@ -79,7 +82,7 @@ function App() {
   };
 
   const updateStudent = async (updatedStudent) => {
-    const response = await fetch(`${API_URL}/${updatedStudent.id}`, {
+    const response = await fetch(`${STUDENTS_ENDPOINT}/${updatedStudent.id}`, {
       method: "PUT",
       headers: {
         accept: "application/json",
